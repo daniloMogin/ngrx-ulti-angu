@@ -1,16 +1,16 @@
 import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  ChangeDetectionStrategy,
+    Component,
+    Input,
+    Output,
+    EventEmitter,
+    ChangeDetectionStrategy
 } from '@angular/core';
 
 @Component({
-  selector: 'pizza-item',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['pizza-item.component.scss'],
-  template: `
+    selector: 'pizza-item',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    styleUrls: ['pizza-item.component.scss'],
+    template: `
     <div class="pizza-item">
       <a [routerLink]="['/products', pizza.id]">
         <pizza-display
@@ -22,8 +22,8 @@ import {
         </button>
       </a>
     </div>
-  `,
+  `
 })
 export class PizzaItemComponent {
-  @Input() pizza: any;
+    @Input() pizza: any;
 }
