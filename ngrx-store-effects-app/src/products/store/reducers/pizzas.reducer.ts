@@ -26,7 +26,6 @@ export function reducer(
         }
         case fromPizzas.LOAD_PIZZAS_SUCCESS: {
             const pizzas = action.paylad;
-
             const entities = pizzas.reduce(
                 (entities: { [id: number]: Pizza }, pizza: Pizza) => {
                     return {
@@ -38,7 +37,6 @@ export function reducer(
                     ...state.entities
                 }
             );
-
             return {
                 ...state,
                 loading: false,
@@ -51,6 +49,17 @@ export function reducer(
                 ...state,
                 loading: false,
                 loaded: false
+            };
+        }
+        case fromPizzas.CREATE_PIZZA_SUCCESS: {
+            const pizza = action.payload;
+            const entities = {
+                ...state.entities,
+                [pizza.id]: pizza
+            };
+            return {
+                ...state,
+                entities
             };
         }
     }
