@@ -55,7 +55,7 @@ export class UpdatePizzaSuccess implements Action {
     constructor(public payload: Pizza) {}
 }
 
-// delete pizza
+// remove pizza
 export const DELETE_PIZZA = '[Products] Delete Pizza';
 export const DELETE_PIZZA_FAIL = '[Products] Delete Pizza Fail';
 export const DELETE_PIZZA_SUCCESS = '[Products] Delete Pizza Success';
