@@ -44,18 +44,6 @@ export class PizzasEffects {
     );
 
     @Effect()
-    createPizzaSuccess$ = this.actions$
-        .ofType(pizzaActions.CREATE_PIZZA_SUCCESS)
-        .pipe(
-            map((action: pizzaActions.CreatePizzaSuccess) => action.payload),
-            map(pizza => {
-                return new fromRoot.Go({
-                    path: ['/products', pizza.id]
-                });
-            })
-        );
-
-    @Effect()
     updatePizza$ = this.actions$.ofType(pizzaActions.UPDATE_PIZZA).pipe(
         map((action: pizzaActions.UpdatePizza) => action.payload),
         switchMap(pizza => {
@@ -69,6 +57,27 @@ export class PizzasEffects {
                 );
         })
     );
+
+    @Effect()
+    handlePizzaSuccess$ = this.actions$
+        .ofType(
+            pizzaActions.CREATE_PIZZA_SUCCESS,
+            pizzaActions.UPDATE_PIZZA_SUCCESS
+        )
+        .pipe(
+            map(
+                (
+                    action:
+                        | pizzaActions.CreatePizzaSuccess
+                        | pizzaActions.UpdatePizzaSuccess
+                ) => action.payload
+            ),
+            map(pizza => {
+                return new fromRoot.Go({
+                    path: ['/products', pizza.id]
+                });
+            })
+        );
 
     @Effect()
     deletePizza$ = this.actions$.ofType(pizzaActions.DELETE_PIZZA).pipe(
@@ -86,11 +95,8 @@ export class PizzasEffects {
     );
 
     @Effect()
-    handlePizzaSuccess$ = this.actions$
-        .ofType(
-            pizzaActions.UPDATE_PIZZA_SUCCESS,
-            pizzaActions.DELETE_PIZZA_SUCCESS
-        )
+    deletePizzaSuccess$ = this.actions$
+        .ofType(pizzaActions.DELETE_PIZZA_SUCCESS)
         .pipe(
             map(pizza => {
                 return new fromRoot.Go({
