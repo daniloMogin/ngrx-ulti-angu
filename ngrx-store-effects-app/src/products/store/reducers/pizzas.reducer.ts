@@ -56,7 +56,7 @@ export function reducer(
             const pizza = action.payload;
             const entities = {
                 ...state.entities,
-                [pizza.id]: pizza
+                [pizza.id]: pizza 
             };
             return {
                 ...state,
